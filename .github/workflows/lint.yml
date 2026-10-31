@@ -1,0 +1,54 @@
+name: Lint
+
+# Runs on every pull request and push to main, with no path filter, so it can be
+# the required check for main. validate-updates.yml (from the LDT4SSC template)
+# runs only when updates/ changes, so it cannot be required.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lint-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up Python
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+
+      - name: Install checkers
+        run: python -m pip install --disable-pip-version-check check-jsonschema==0.39.0 pyyaml==6.0.3
+
+      - name: Every YAML file parses
+        run: |
+          python - <<'EOF'
+          import pathlib, sys, yaml
+          files = [p for p in pathlib.Path('.').rglob('*') if p.suffix in ('.yml', '.yaml') and '.git' not in p.parts]
+          bad = 0
+          for p in sorted(files):
+              try:
+                  list(yaml.safe_load_all(p.read_text(encoding='utf-8')))
+              except yaml.YAMLError as e:
+                  bad += 1
+                  print(f'::error file={p}::{e}')
+          print(f'{len(files)} YAML files checked, {bad} invalid')
+          sys.exit(1 if bad else 0)
+          EOF
+
+      - name: pilot.yaml matches the ALEX schema
+        run: check-jsonschema --schemafile .github/pilot.schema.json pilot.yaml

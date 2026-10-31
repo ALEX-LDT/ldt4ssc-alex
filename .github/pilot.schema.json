@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ALEX-LDT/ldt4ssc-alex/blob/main/.github/pilot.schema.json",
+  "title": "ALEX pilot.yaml",
+  "description": "Checks pilot.yaml before the LDT4SSC aggregator publishes it. The aggregator itself accepts any YAML mapping, so template placeholders in <angle brackets> would otherwise be published as they are.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "short_name", "name", "description", "work_strand", "locations", "focus_areas", "consortium", "contact", "start_date"],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "short_name": {
+      "const": "alex",
+      "description": "Must match the short name LDT4SSC uses for ALEX; the aggregator ignores this field and keeps its own."
+    },
+    "name": { "$ref": "#/$defs/text" },
+    "description": { "$ref": "#/$defs/text" },
+    "work_strand": { "enum": ["WS1", "WS2", "WS3"] },
+    "locations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["city", "country", "country_code"],
+        "properties": {
+          "city": { "$ref": "#/$defs/text" },
+          "country": { "$ref": "#/$defs/text" },
+          "country_code": { "$ref": "#/$defs/country_code" }
+        }
+      }
+    },
+    "focus_areas": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/text" }
+    },
+    "consortium": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "role", "country_code"],
+        "properties": {
+          "name": { "$ref": "#/$defs/text" },
+          "role": { "$ref": "#/$defs/text" },
+          "country_code": { "$ref": "#/$defs/country_code" },
+          "website": { "$ref": "#/$defs/url" }
+        }
+      }
+    },
+    "contact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "organisation"],
+      "properties": {
+        "name": { "$ref": "#/$defs/text" },
+        "email": { "type": "string", "pattern": "^[^<>@\\s]+@[^<>@\\s]+\\.[^<>@\\s]+$" },
+        "organisation": { "$ref": "#/$defs/text" }
+      }
+    },
+    "start_date": { "$ref": "#/$defs/date" },
+    "end_date": { "$ref": "#/$defs/date" },
+    "external_links": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["label", "url"],
+        "properties": {
+          "label": { "$ref": "#/$defs/text" },
+          "url": { "$ref": "#/$defs/url" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "text": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[^<>]*$",
+      "description": "Non-empty, with no <placeholder> left from the template."
+    },
+    "country_code": { "type": "string", "pattern": "^[A-Z]{2}$" },
+    "url": { "type": "string", "pattern": "^https://[^<>\\s]+$" },
+    "date": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+      "description": "A date in YYYY-MM-DD form."
+    }
+  }
+}

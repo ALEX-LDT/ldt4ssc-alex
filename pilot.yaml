@@ -1,68 +1,70 @@
-# LDT4SSC pilot metadata
+# LDT4SSC pilot metadata for ALEX
 #
-# This file describes your pilot at a glance and is read by the LDT4SSC
-# aggregator to know what your pilot is and how to present it on the
-# Knowledge Hub and the project website.
-#
-# This is the FIRST FILE you should edit after creating your pilot
-# repository from the template. A pilot repository without a properly
-# filled-in pilot.yaml will not be picked up by the aggregator.
-#
-# Replace all placeholder values (in <angle brackets>) with your pilot's
-# real information. Remove any optional fields you do not use.
+# Read by the LDT4SSC aggregator to present the pilot on the Knowledge Hub and
+# the project website. Once the repository is registered, these values replace
+# what LDT4SSC holds for ALEX (short_name stays as LDT4SSC set it).
+# The lint check validates this file against .github/pilot.schema.json.
 
 schema_version: 1
 
-# Short name of the pilot, in lowercase with hyphens (used in URLs)
-short_name: <your-pilot-short-name>
+short_name: alex
 
-# Human-readable name of the pilot
-name: <Your Pilot Full Name>
+name: ALEX
 
-# Short description of the pilot (one or two sentences)
 description: >
-  <A short description of what this pilot is about, what challenge it
-  addresses, and what value it aims to deliver. One or two sentences is
-  enough.>
+  An AI-powered Local Digital Twin initiative evolving existing urban platforms
+  into dynamic tools for building energy retrofit prioritisation, climate
+  neutrality planning, and sustainable urban design.
 
-# LDT4SSC work strand: WS1, WS2, or WS3
-work_strand: <WS1 | WS2 | WS3>
+work_strand: WS3
 
-# The cities, regions, or communities involved in this pilot
 locations:
-  - city: <City name>
-    country: <Country name>
-    country_code: <ISO 3166-1 alpha-2 code, e.g. LU, IT, ES>
-  # Add more entries as needed for multi-city pilots
+  - city: Helsinki
+    country: Finland
+    country_code: FI
+  - city: Prague
+    country: Czechia
+    country_code: CZ
 
-# The thematic focus areas of the pilot, drawn from the LDT4SSC topic list.
-# Pick all that apply. The full list is documented in the LDT4SSC Knowledge
-# Hub under Resources for Pilots.
 focus_areas:
-  - <e.g. mobility>
-  - <e.g. air-quality>
+  - Building energy retrofit prioritisation
+  - climate action scenario simulation
+  - sustainable urban planning
 
-# The consortium members participating in this pilot
 consortium:
-  - name: <Organisation name>
-    role: <e.g. Pilot lead, Public authority, Technology partner, Research>
-    country_code: <ISO 3166-1 alpha-2 code>
-    website: <https://...>  # optional
-  # Add more entries for each consortium member
+  - name: City of Helsinki
+    role: Coordinator, Helsinki pilot
+    country_code: FI
+    website: https://www.hel.fi/en
+  - name: Forum Virium Helsinki
+    role: Development, Helsinki pilot
+    country_code: FI
+    website: https://forumvirium.fi/en/
+  - name: Prague Institute of Planning and Development (IPR Praha)
+    role: Prague pilot
+    country_code: CZ
+    website: https://iprpraha.cz/en
+  - name: Operator ICT
+    role: AI components, Prague pilot
+    country_code: CZ
+    website: https://operatorict.cz/en
+  - name: Institute of Computer Science of the Czech Academy of Sciences
+    role: Atmospheric and micro-scale simulation
+    country_code: CZ
+    website: https://www.cs.cas.cz/index.php/en
+  - name: National Land Survey of Finland, Finnish Geospatial Research Institute
+    role: Geospatial interoperability, Location Europe
+    country_code: FI
+    website: https://www.maanmittauslaitos.fi/en/research
+  - name: Visions
+    role: Data space connector
+    country_code: FR
+    website: https://visionspol.eu
 
-# Primary contact for the pilot
 contact:
-  name: <Contact person name>
-  email: <contact@example.org>
-  organisation: <Organisation name>
+  name: Tapani Heino
+  organisation: City of Helsinki
 
-# Date the pilot started (ISO 8601 format: YYYY-MM-DD)
-start_date: <YYYY-MM-DD>
+start_date: 2026-08-31
 
-# Optional: expected end date of the pilot
-# end_date: <YYYY-MM-DD>
-
-# Optional: list of external repositories or websites associated with this pilot
-# external_links:
-#   - label: <Description>
-#     url: <https://...>
+end_date: 2028-02-29
