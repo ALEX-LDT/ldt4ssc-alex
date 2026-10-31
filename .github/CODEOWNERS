@@ -1,0 +1,6 @@
+# The maintainers review changes to the pilot metadata, the landing page and the
+# repository's automation (kick-off decision: maintainer for pilot.yaml, the
+# README and repository settings).
+/pilot.yaml   @ALEX-LDT/maintainers
+/README.md    @ALEX-LDT/maintainers
+/.github/     @ALEX-LDT/maintainers
