@@ -1,104 +1,68 @@
-# LDT4SSC Pilot Project Repository
+# ALEX: AI Local climate and Energy eXchange
 
-> ## 🚧 Setup instructions — delete this section once your repository is live
->
-> Prefer GitLab (gitlab.com or your own self-managed instance)? Use the
-> [GitLab pilot template](https://gitlab.com/ldt4ssc/pilot-template) instead.
->
-> 1. Get your own copy of the template:
->    - **On github.com:** click **"Use this template" → "Create a new
->      repository"** on the `pilot-template` GitHub repo, choosing your
->      pilot's org/name, then clone it locally.
->    - **On a GitHub Enterprise Server (GHES) instance:** "Use this
->      template" only works within a single GitHub instance, so you can't
->      use it across github.com → your GHES org. Instead, clone from the
->      public template and push to your own instance:
->      ```bash
->      git clone https://github.com/ldt4ssc/pilot-template.git ldt4ssc-<your-pilot-slug>
->      cd ldt4ssc-<your-pilot-slug>
->      rm -rf .git && git init
->      git remote add origin <your-new-ghes-repo-url>
->      git add -A && git commit -m "Initial commit"
->      git push -u origin main
->      ```
->      Also note: [.github/workflows/validate-updates.yml](.github/workflows/validate-updates.yml)
->      calls a **reusable workflow** hosted at
->      `github.com/ldt4ssc/ldt4ssc.github.io` — GitHub Actions reusable
->      workflows cannot be called across different GitHub instances, so this
->      `uses:` reference will not resolve on GHES as-is. Until a GHES-hosted
->      copy of that reusable workflow exists, replace it with a self-contained
->      job on GHES (checkout, set up Python, `curl` the schema/validator from
->      `raw.githubusercontent.com`, then run it) — check with the LDT4SSC
->      consortium for the current recommended approach, and confirm with your
->      GitHub admin that Actions runners have outbound HTTPS access to
->      `raw.githubusercontent.com` if you go this route.
-> 2. Edit [`pilot.yaml`](pilot.yaml) to describe your pilot.
-> 3. Read [`updates/README.md`](updates/README.md) to understand the update format.
-> 4. Copy one of the examples in `updates/_examples/` and adapt it to write your
->    first update.
-> 5. Commit and push. The validation workflow will check that your update
->    conforms to the schema.
-> 6. Register your repository URL with the LDT4SSC consortium so that it is
->    picked up by the aggregator. (See the LDT4SSC pilot onboarding package
->    for the current registration mechanism.)
+ALEX brings AI into Local Digital Twins for climate and energy planning in Helsinki and Prague. It is a Work Strand 3 pilot of [LDT4SSC](https://ldt4ssc.eu/) (Local Digital Twins for Smart and Sustainable Communities) and runs from 31 August 2026 to 29 February 2028.
 
----
+This repository is the pilot's public record: progress Updates, documentation, and pointers to the pilot's outputs. Its Updates appear on the pilot's page on the [LDT4SSC Knowledge Hub](https://knowledgehub.ldt4ssc.eu/) and in the LDT4SSC project feeds. It was created from the [LDT4SSC pilot template](https://github.com/ldt4ssc/pilot-template).
 
-` < change as necessary > `
+## The pilots
 
-This repository is the home of an **LDT4SSC pilot project**. It contains the
-pilot's documentation, shared artefacts, and ongoing updates, and serves as the
-canonical public record of the pilot's work within the LDT4SSC initiative.
+- **Helsinki** develops the city's Energy and Climate Atlas into a Local Digital Twin capable of predictive analysis: prioritising energy retrofits across the building stock, estimating the effect of climate actions, and making the results understandable to private and public actors.
+- **Prague** builds a Local Digital Twin that brings energy, environmental and spatial data into the early stages of urban planning, so that development scenarios can be simulated before they are built.
 
-This repository was created from the [LDT4SSC pilot template](https://github.com/ldt4ssc/pilot-template)
-and follows the structure and conventions of the LDT4SSC pilot documentation
-framework.
-
-## What this repository is for
-
-This repository is the **project repository** for this pilot within LDT4SSC.
-It exists so that:
-
-- The pilot has a **single canonical public location** for its work that is
-  visible to the LDT4SSC community and to the wider public.
-- The pilot's **updates, milestones, lessons learned, and shared assets** can
-  be published in a structured form and aggregated by the Knowledge Hub and
-  the LDT4SSC project website.
-- The pilot **owns its own record** of its work, independently of any central
-  project infrastructure. If LDT4SSC project infrastructure evolves or ends,
-  the content in this repository remains intact, open, and accessible.
-- Outputs produced by the pilot can be **preserved, cited, and reused** by
-  others, now and in the future.
-
-This repository is **the pilot's own**. The consortium maintains the template
-and the aggregation infrastructure, but the content is owned, authored, and
-controlled by the pilot.
+Both pilots share an interoperability layer based on Location Europe and OGC APIs, a Model Context Protocol (MCP) tool for AI-ready access to geospatial data, and a Prometheus-X data space connector for trusted data exchange.
 
 ## Repository structure
 
-- [`pilot.yaml`](pilot.yaml) — core metadata describing this pilot (name,
-  partners, work strand, focus areas). **Edit this first.**
-- [`updates/`](updates/) — structured updates on the pilot's journey:
-  milestones, lessons learned, general progress, and references to assets and
-  events. See [`updates/README.md`](updates/README.md) for the format.
-- [`docs/`](docs/) — general project documentation.
-- [`assets/`](assets/) — references to shared artefacts contributed by this
-  pilot to the LDT4SSC Assets and Services Repository.
-- [`src/`](src/) — source code developed by the pilot, if shared here.
-- [`data-models/`](data-models/) — pilot-specific data models or references
-  to published data models.
+| Path | Contents |
+| --- | --- |
+| [`pilot.yaml`](pilot.yaml) | Pilot metadata read by the LDT4SSC aggregator: name, partners, locations, focus areas, contact |
+| [`updates/`](updates/) | Updates on the pilot's progress, milestones, lessons, assets and events. See [`updates/README.md`](updates/README.md) for the format |
+| [`docs/`](docs/) | Longer-lived documentation: architecture, decisions, methodology |
+| [`assets/`](assets/) | Descriptions of the pilot's outputs, with links to where each lives |
+| [`src/`](src/) | Source code, or pointers to the repositories where it lives |
+| [`data-models/`](data-models/) | Data models, or references to where they are published openly |
+
+<!--
+Placeholder: uncomment once the first development or partner repository is public.
+
+## Related repositories
+
+| Repository | Owner | Contents |
+| --- | --- | --- |
+-->
+
+## Contributing
+
+Changes reach `main` only through pull requests, reviewed and approved by someone from another partner. See [CONTRIBUTING.md](CONTRIBUTING.md) for the workflow.
+
+- **Updates:** at least one a month during active work, written by the task leaders or the maintainers. Copy an example from [`updates/_examples/`](updates/_examples/), and list everyone who contributed as authors.
+- **Who can merge:** members of the pilot editors team, agreed by the consortium. Other consortium members propose changes through a pull request from a fork. For substantial content, open an [Update or Documentation Proposal](../../issues/new?template=3-content-proposal.yml) first.
+- **Never in this repository:** confidential, sensitive or embargoed information; personal data without consent; third-party material without attribution and a licence; formal reports and deliverables.
+
+The `lint` check validates `pilot.yaml` on every pull request, and the template's validation workflow checks every Update.
+
+## Contacts
+
+| Role | Contact |
+| --- | --- |
+| Main contact, City of Helsinki (pilot coordinator) | Tapani Heino |
+| Main contact, Forum Virium Helsinki | Olli-Pekka Mattila |
+| Repository maintainers | The ALEX-LDT maintainers team (Forum Virium Helsinki), through an [issue](../../issues/new/choose) in this repository |
+
+To report a security vulnerability, follow the [security policy](https://github.com/ALEX-LDT/.github/blob/main/SECURITY.md). Do not open a public issue.
 
 ## Licensing
 
-Code in this repository is licensed under the Apache License 2.0. Content
-and documentation are licensed under Creative Commons Attribution 4.0
-International (CC BY 4.0) unless stated otherwise. See [`LICENSE`](LICENSE) for
-details.
+Code in this repository is licensed under the Apache License 2.0. Content and documentation are licensed under Creative Commons Attribution 4.0 International (CC BY 4.0) unless stated otherwise. See [`LICENSE`](LICENSE) for details.
 
 ## About LDT4SSC
 
-LDT4SSC (Local Digital Twins for Smart and Sustainable Communities) is a
-project funded by the Digital Europe Programme under grant agreement number 101226211, developing an interconnected ecosystem of Local Digital Twins across Europe.
+LDT4SSC (Local Digital Twins for Smart and Sustainable Communities) is a project funded by the Digital Europe Programme under grant agreement number 101226211, developing an interconnected ecosystem of Local Digital Twins across Europe.
 
-Learn more at the [LDT4SSC project website](https://ldt4ssc.eu/) and the
-[LDT4SSC Knowledge Hub](https://knowledgehub.ldt4ssc.eu/).
+Learn more at the [LDT4SSC project website](https://ldt4ssc.eu/) and the [LDT4SSC Knowledge Hub](https://knowledgehub.ldt4ssc.eu/).
+
+## Funding
+
+<img src="https://github.com/ALEX-LDT/.github/raw/main/profile/eu-emblem.png" alt="Co-funded by the European Union" height="60">
+
+Funded by the European Union. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or Digital Europe Programme. Neither the European Union nor the Digital Europe Programme can be held responsible for them. The LDT4SSC consortium and the European Commission are not responsible for any use that may be made of the information it contains.
